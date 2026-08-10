@@ -1,0 +1,8 @@
+python-telegram-bot==21.10
+requests
+gspread
+google-auth
+google-auth-oauthlib
+telethon
+python-dotenv
+aiohttp
