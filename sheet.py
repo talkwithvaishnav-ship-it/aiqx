@@ -29,9 +29,12 @@ else:
 client = gspread.authorize(creds)
 
 # NEW GOOGLE SHEET
-sheet = client.open_by_key(
+spreadsheet = client.open_by_key(
     "16iCjst2Fib5w4e1SmfB_Lfm9nAx2Wz45w2q-NCfoh4Q"
-).worksheet("Licenses")
+)
+
+# Use the first worksheet/tab
+sheet = spreadsheet.sheet1
 
 
 def generate_license():
@@ -43,7 +46,7 @@ def generate_license():
         try:
             sheet.find(key)
 
-        except:
+        except gspread.exceptions.CellNotFound:
             return key
 
 
@@ -62,8 +65,8 @@ def is_active(trader_id):
 def save_license(trader_id, country, deposit, plan):
 
     sheet.append_row([
-        trader_id,
-        plan,
+        str(trader_id),
+        str(plan),
         "Active",
         "",
         ""
