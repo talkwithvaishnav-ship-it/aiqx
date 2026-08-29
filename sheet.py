@@ -9,7 +9,7 @@ SCOPES = [
     "https://www.googleapis.com/auth/drive"
 ]
 
-# Local VS Code + Railway Support
+# Railway + Local VS Code
 if "GOOGLE_CREDENTIALS" in os.environ:
 
     credentials = json.loads(os.environ["GOOGLE_CREDENTIALS"])
@@ -28,12 +28,12 @@ else:
 
 client = gspread.authorize(creds)
 
+# NEW GOOGLE SHEET
 sheet = client.open_by_key(
-    "1aQAEq-cc8DR9BNQT3s_QAzx86PTGLGI0jnWZ3mpeQCg"
-).worksheet("Licenses")
+    "16iCjst2Fib5w4e1SmfB_Lfm9nAx2Wz45w2q-NCfoh4Q"
+).worksheet("Quotexbot2.0")
 
 
-# Generate License
 def generate_license():
 
     while True:
@@ -47,27 +47,26 @@ def generate_license():
             return key
 
 
-# Check Trader Already Active
 def is_active(trader_id):
 
     values = sheet.get_all_values()
 
     for row in values[1:]:
 
-        if len(row) >= 2 and row[1] == str(trader_id):
+        if len(row) >= 1 and row[0] == str(trader_id):
             return True
 
     return False
 
 
-# Save License
 def save_license(trader_id, country, deposit, plan):
 
     sheet.append_row([
         trader_id,
-        trader_id,
         plan,
-        "active"
+        "Active",
+        "",
+        ""
     ])
 
     return trader_id
