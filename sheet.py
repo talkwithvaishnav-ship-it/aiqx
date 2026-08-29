@@ -31,7 +31,7 @@ client = gspread.authorize(creds)
 # NEW GOOGLE SHEET
 sheet = client.open_by_key(
     "16iCjst2Fib5w4e1SmfB_Lfm9nAx2Wz45w2q-NCfoh4Q"
-).worksheet("Quotexbot2.0")
+).worksheet("Licenses")
 
 
 def generate_license():
