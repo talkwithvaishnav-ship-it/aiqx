@@ -29,7 +29,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [
             InlineKeyboardButton(
                 "🌐 Open Quotex Remix AI",
-                url="https://www.quotexremixai.com/"
+                url="https://quotexremixai.vercel.app/"
             )
         ],
         [
@@ -49,7 +49,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 1️⃣ Create Quotex Account
 
-2️⃣ Deposit Minimum <b>$30</b>
+2️⃣ Deposit Minimum <b>$20</b>
 
 3️⃣ Send your Trader ID
 
@@ -114,7 +114,7 @@ Your account is not registered using our Official api Link.
 
 1️⃣ Create a new Quotex account
 
-2️⃣ Deposit at least <b>$30</b>
+2️⃣ Deposit at least <b>$20</b>
 
 3️⃣ Send your Trader ID here
 
@@ -143,7 +143,7 @@ Your account is not registered using our Official api Link.
         # Net Deposit Validation
         # -----------------------------
 
-        if net_deposit < 30 or balance <= 0:
+        if net_deposit < 20 or balance <= 0:
 
             keyboard = InlineKeyboardMarkup([
                 [
@@ -179,9 +179,9 @@ Your account is not eligible.
 
 ⚠️ <b>Requirements</b>
 
-• Net Deposit must be at least <b>$30</b>
+• Net Deposit must be at least <b>$20</b>
 
-• Balance must be greater than <b>$0</b>
+• Balance must be greater than <b>$19</b>
 
 Please deposit again and send your Trader ID.
 
@@ -203,7 +203,7 @@ Please deposit again and send your Trader ID.
                 [
                     InlineKeyboardButton(
                         "🌐 Open Quotex Remix AI",
-                        url="https://www.quotexremixai.com/"
+                        url="https://quotexremixai.vercel.app/"
                     )
                 ],
                 [
@@ -223,7 +223,7 @@ f"""⚠️ <b>API Already Activated</b>
 
 This Trader ID already has an ACTIVE API.
 
-🌐 https://www.quotexremixai.com/
+🌐 https://quotexremixai.vercel.app/
 
 💬 @AIQuotextrader
 """,
@@ -273,7 +273,7 @@ This Trader ID already has an ACTIVE API.
 
 Minimum Deposit Required
 
-💰 <b>$30</b>
+💰 <b>$20</b>
 
 Complete your deposit and send your Trader ID again.
 """,
@@ -300,7 +300,7 @@ Complete your deposit and send your Trader ID again.
             [
                 InlineKeyboardButton(
                     "🤖 Open Quotex Remix AI",
-                    url="https://www.quotexremixai.com/"
+                    url="https://quotexremixai.vercel.app/"
                 )
             ],
             [
@@ -344,7 +344,7 @@ ACTIVE
 ━━━━━━━━━━━━━━
 
 🚀 Open:
-https://www.quotexremixai.com/
+https://quotexremixai.vercel.app/
 
 Use your <b>Trader ID as API ID</b>.
 
