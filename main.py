@@ -29,7 +29,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [
             InlineKeyboardButton(
                 "🌐 Open Quotex Remix AI",
-                url="https://quotexremixai.vercel.app/"
+                url="https://www.quotexremixai.com/"
             )
         ],
         [
@@ -203,7 +203,7 @@ Please deposit again and send your Trader ID.
                 [
                     InlineKeyboardButton(
                         "🌐 Open Quotex Remix AI",
-                        url="https://quotexremixai.vercel.app/"
+                        url="https://www.quotexremixai.com/"
                     )
                 ],
                 [
@@ -223,7 +223,7 @@ f"""⚠️ <b>API Already Activated</b>
 
 This Trader ID already has an ACTIVE API.
 
-🌐 https://quotexremixai.vercel.app/
+🌐 https://www.quotexremixai.com/
 
 💬 @AIQuotextrader
 """,
@@ -300,7 +300,7 @@ Complete your deposit and send your Trader ID again.
             [
                 InlineKeyboardButton(
                     "🤖 Open Quotex Remix AI",
-                    url="https://quotexremixai.vercel.app/"
+                    url="https://www.quotexremixai.com/"
                 )
             ],
             [
@@ -344,7 +344,7 @@ ACTIVE
 ━━━━━━━━━━━━━━
 
 🚀 Open:
-https://quotexremixai.vercel.app/
+https://www.quotexremixai.com/
 
 Use your <b>Trader ID as API ID</b>.
 
