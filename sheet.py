@@ -28,12 +28,12 @@ else:
 
 client = gspread.authorize(creds)
 
-# NEW GOOGLE SHEET
+# GOOGLE SHEET
 spreadsheet = client.open_by_key(
-    "16iCjst2Fib5w4e1SmfB_Lfm9nAx2Wz45w2q-NCfoh4Q"
+    "16iCjst2Fib5y4e1SmfB_Lfm9nAx2Wz45w2q-NCfoh4Q"
 )
 
-# Use the first worksheet/tab
+# First worksheet/tab
 sheet = spreadsheet.sheet1
 
 
@@ -52,12 +52,24 @@ def generate_license():
 
 def is_active(trader_id):
 
+    trader_id = str(trader_id).strip()
+
+    # Empty Trader ID kabhi active nahi hoga
+    if not trader_id:
+        return False
+
     values = sheet.get_all_values()
 
     for row in values[1:]:
 
-        if len(row) >= 1 and row[0] == str(trader_id):
-            return True
+        if len(row) >= 3:
+
+            license_key = str(row[0]).strip()
+            status = str(row[2]).strip().lower()
+
+            # ID + Active status dono match hone chahiye
+            if license_key == trader_id and status == "active":
+                return True
 
     return False
 
