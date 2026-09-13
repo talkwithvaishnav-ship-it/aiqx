@@ -9,7 +9,10 @@ SCOPES = [
     "https://www.googleapis.com/auth/drive"
 ]
 
-# Railway + Local VS Code
+# =========================================================
+# GOOGLE CREDENTIALS
+# =========================================================
+
 if "GOOGLE_CREDENTIALS" in os.environ:
 
     credentials = json.loads(os.environ["GOOGLE_CREDENTIALS"])
@@ -26,16 +29,43 @@ else:
         scopes=SCOPES
     )
 
+
 client = gspread.authorize(creds)
 
+
+# =========================================================
 # GOOGLE SHEET
-spreadsheet = client.open_by_key(
-    "16iCjst2Fib5y4e1SmfB_Lfm9nAx2Wz45w2q-NCfoh4Q"
+# =========================================================
+
+SHEET_ID = os.getenv(
+    "GOOGLE_SHEET_ID",
+    "16iCjst2Fib5w4e1SmfB_Lfm9nAx2Wz45w2q-NCfoh4Q"
 )
+
+print("Google Sheet ID:", SHEET_ID)
+
+try:
+
+    spreadsheet = client.open_by_key(SHEET_ID)
+
+    print("✅ Google Sheet connected successfully")
+    print("📄 Sheet:", spreadsheet.title)
+
+except Exception as e:
+
+    print("❌ GOOGLE SHEET CONNECTION FAILED")
+    print("Error:", repr(e))
+
+    raise
+
 
 # First worksheet/tab
 sheet = spreadsheet.sheet1
 
+
+# =========================================================
+# GENERATE LICENSE
+# =========================================================
 
 def generate_license():
 
@@ -44,18 +74,24 @@ def generate_license():
         key = str(random.randint(10000000, 99999999))
 
         try:
+
             sheet.find(key)
 
         except gspread.exceptions.CellNotFound:
+
             return key
 
+
+# =========================================================
+# CHECK ACTIVE
+# =========================================================
 
 def is_active(trader_id):
 
     trader_id = str(trader_id).strip()
 
-    # Empty Trader ID kabhi active nahi hoga
     if not trader_id:
+
         return False
 
     values = sheet.get_all_values()
@@ -67,14 +103,26 @@ def is_active(trader_id):
             license_key = str(row[0]).strip()
             status = str(row[2]).strip().lower()
 
-            # ID + Active status dono match hone chahiye
-            if license_key == trader_id and status == "active":
+            if (
+                license_key == trader_id
+                and status == "active"
+            ):
+
                 return True
 
     return False
 
 
-def save_license(trader_id, country, deposit, plan):
+# =========================================================
+# SAVE LICENSE
+# =========================================================
+
+def save_license(
+    trader_id,
+    country,
+    deposit,
+    plan
+):
 
     sheet.append_row([
         str(trader_id),
