@@ -493,4 +493,6 @@ app.add_handler(
 
 print("✅ Quotex Remix AI Bot Running...")
 
-app.run_polling()
+app.run_polling(
+    drop_pending_updates=True
+)
