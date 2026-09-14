@@ -1,3 +1,5 @@
+import os
+
 from telegram import (
     Update,
     InlineKeyboardButton,
@@ -493,6 +495,29 @@ app.add_handler(
 
 print("✅ Quotex Remix AI Bot Running...")
 
-app.run_polling(
+# =========================================================
+# RAILWAY WEBHOOK
+# =========================================================
+# Railway provides RAILWAY_PUBLIC_DOMAIN after a public
+# service domain has been generated.
+RAILWAY_DOMAIN = os.getenv("RAILWAY_PUBLIC_DOMAIN")
+PORT = int(os.getenv("PORT", "8080"))
+
+if not RAILWAY_DOMAIN:
+    raise RuntimeError(
+        "RAILWAY_PUBLIC_DOMAIN is missing. "
+        "Generate a Railway Service Domain first."
+    )
+
+WEBHOOK_URL = f"https://{RAILWAY_DOMAIN}/telegram"
+
+print("🌐 Webhook URL:", WEBHOOK_URL)
+print("🔌 Listening on port:", PORT)
+
+app.run_webhook(
+    listen="0.0.0.0",
+    port=PORT,
+    url_path="telegram",
+    webhook_url=WEBHOOK_URL,
     drop_pending_updates=True
 )
