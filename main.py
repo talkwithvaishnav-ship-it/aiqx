@@ -500,14 +500,14 @@ print("✅ Quotex Remix AI Bot Running...")
 # =========================================================
 # Railway provides RAILWAY_PUBLIC_DOMAIN after a public
 # service domain has been generated.
-RAILWAY_DOMAIN = os.getenv("RAILWAY_PUBLIC_DOMAIN")
+# Railway public domain already generated for this service.
+# Use the environment variable when available, otherwise use the
+# known Railway domain as a fallback.
+RAILWAY_DOMAIN = os.getenv(
+    "RAILWAY_PUBLIC_DOMAIN",
+    "aiqx-production.up.railway.app"
+)
 PORT = int(os.getenv("PORT", "8080"))
-
-if not RAILWAY_DOMAIN:
-    raise RuntimeError(
-        "RAILWAY_PUBLIC_DOMAIN is missing. "
-        "Generate a Railway Service Domain first."
-    )
 
 WEBHOOK_URL = f"https://{RAILWAY_DOMAIN}/telegram"
 
